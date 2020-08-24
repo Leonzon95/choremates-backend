@@ -1,3 +1,3 @@
 class Day < ApplicationRecord
-  belongs_to :chore
+  has_many :chores
 end

@@ -15,17 +15,17 @@ ActiveRecord::Schema.define(version: 2020_08_24_204106) do
   create_table "chores", force: :cascade do |t|
     t.string "name"
     t.integer "house_member_id", null: false
+    t.integer "day_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["day_id"], name: "index_chores_on_day_id"
     t.index ["house_member_id"], name: "index_chores_on_house_member_id"
   end
 
   create_table "days", force: :cascade do |t|
     t.string "name"
-    t.integer "chore_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["chore_id"], name: "index_days_on_chore_id"
   end
 
   create_table "house_members", force: :cascade do |t|
@@ -50,8 +50,8 @@ ActiveRecord::Schema.define(version: 2020_08_24_204106) do
     t.index ["house_id"], name: "index_rules_on_house_id"
   end
 
+  add_foreign_key "chores", "days"
   add_foreign_key "chores", "house_members"
-  add_foreign_key "days", "chores"
   add_foreign_key "house_members", "houses"
   add_foreign_key "rules", "houses"
 end
