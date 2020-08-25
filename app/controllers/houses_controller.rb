@@ -4,7 +4,7 @@ class HousesController < ApplicationController
         if house.save   
             render json: HouseSerializer.new(house)
         else  
-            render json: {error: 'House name already exists'}
+            render json: {error: house.errors.full_messages.join(", ")}
         end
     end
     
@@ -13,7 +13,7 @@ class HousesController < ApplicationController
         if house
             render json: HouseSerializer.new(house)
         else
-            render json: {error: 'House with that name does not exist'}
+            render json: {error: 'House does not exist'}
         end
     end
 end
