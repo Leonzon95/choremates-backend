@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_24_204106) do
+ActiveRecord::Schema.define(version: 2020_08_25_155446) do
 
   create_table "chores", force: :cascade do |t|
     t.string "name"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2020_08_24_204106) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_houses_on_name"
   end
 
   create_table "rules", force: :cascade do |t|
