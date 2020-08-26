@@ -10,7 +10,7 @@ class HousesController < ApplicationController
     
     def show
         house = House.find_by(name: params[:id])
-        options = {include: [:house_members]}
+        options = {include: [:house_members, :rules, :chores]}
         if house
             render json: HouseSerializer.new(house, options)
         else
