@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_25_211320) do
+ActiveRecord::Schema.define(version: 2020_08_25_235051) do
 
   create_table "chores", force: :cascade do |t|
     t.string "name"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2020_08_25_211320) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "house_id", null: false
+    t.string "difficulty"
     t.index ["day_id"], name: "index_chores_on_day_id"
     t.index ["house_id"], name: "index_chores_on_house_id"
     t.index ["house_member_id"], name: "index_chores_on_house_member_id"

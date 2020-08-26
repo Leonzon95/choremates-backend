@@ -1,5 +1,5 @@
 class HouseMemberSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :name
+  attributes :name, :id
   belongs_to :house
 end
