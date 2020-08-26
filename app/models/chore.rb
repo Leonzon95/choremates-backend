@@ -4,4 +4,5 @@ class Chore < ApplicationRecord
 
 
   validates :name, presence: true
+  validates :difficulty, presence: true
 end
