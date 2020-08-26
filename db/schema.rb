@@ -14,21 +14,14 @@ ActiveRecord::Schema.define(version: 2020_08_25_235051) do
 
   create_table "chores", force: :cascade do |t|
     t.string "name"
-    t.integer "house_member_id", null: false
-    t.integer "day_id", null: false
+    t.string "day"
+    t.integer "house_member_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "house_id", null: false
     t.string "difficulty"
-    t.index ["day_id"], name: "index_chores_on_day_id"
     t.index ["house_id"], name: "index_chores_on_house_id"
     t.index ["house_member_id"], name: "index_chores_on_house_member_id"
-  end
-
-  create_table "days", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "house_members", force: :cascade do |t|
@@ -54,7 +47,6 @@ ActiveRecord::Schema.define(version: 2020_08_25_235051) do
     t.index ["house_id"], name: "index_rules_on_house_id"
   end
 
-  add_foreign_key "chores", "days"
   add_foreign_key "chores", "house_members"
   add_foreign_key "chores", "houses"
   add_foreign_key "house_members", "houses"

@@ -1,5 +1,7 @@
 class Chore < ApplicationRecord
   belongs_to :house
-  belongs_to :house_member
-  belongs_to :day
+  belongs_to :house_member, optional: true
+
+
+  validates :name, presence: true
 end
