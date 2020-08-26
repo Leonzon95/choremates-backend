@@ -17,8 +17,11 @@ class ChoresController < ApplicationController
         else
             render json: {error: chore.errors.full_messages.join(", ")}
         end
-        
+    end
 
+    def destroy
+        chore = Chore.find_by_id(params[:id])
+        chore.destroy
     end
 
     private
