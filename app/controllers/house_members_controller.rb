@@ -9,6 +9,20 @@ class HouseMembersController < ApplicationController
         end
     end
 
+    def update
+        member = HouseMember.find_by_id(params[:id])
+        member.update(member_params)
+    end
+
+    def destroy
+        member = HouseMember.find_by_id(params[:id])
+        member.chores.each do |chore| 
+            chore.house_member = nil
+            chore.save
+        end
+        member.destroy
+    end
+
     private
     def member_params
         params.require(:house_member).permit(:name)
