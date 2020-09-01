@@ -18,6 +18,7 @@ class HouseMembersController < ApplicationController
         member = HouseMember.find_by_id(params[:id])
         member.chores.each do |chore| 
             chore.house_member = nil
+            chore.day = null
             chore.save
         end
         member.destroy
