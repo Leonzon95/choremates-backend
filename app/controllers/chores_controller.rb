@@ -3,14 +3,16 @@ class ChoresController < ApplicationController
         house = House.find_by_id(params[:house_id])
         chore = house.chores.build(chore_params)
         if (chore.save)
-            render json: ChoreSerializer.new(chore)
+            # render json: ChoreSerializer.new(chore)
+            obj = {chore: ChoreSerializer.new(chore), action: 'create'}
+            HouseChannel.broadcast_to(house, obj)
         else
             render json: {error: chore.errors.full_messages.join(", ")}
         end
     end
 
     def update
-        # house = House.find_by_id(params[:house_id])
+        house = House.find_by_id(params[:house_id])
         chore = Chore.find_by_id(params[:id])
         if chore.update(chore_params)
             if params[:houseMemberId]
@@ -18,7 +20,9 @@ class ChoresController < ApplicationController
                 chore.house_member = house_member
                 chore.save
             end
-            render json: ChoreSerializer.new(chore)
+            obj = {chore: ChoreSerializer.new(chore), action: 'edit'}
+            HouseChannel.broadcast_to(house, obj)
+            # render json: {chore: chore}
         else
             render json: {error: chore.errors.full_messages.join(", ")}
         end

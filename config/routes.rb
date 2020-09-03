@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     resources :chores, only: [:create, :update, :destroy]
   end
 
+  mount ActionCable.server => '/cable'
+
   
   
   
