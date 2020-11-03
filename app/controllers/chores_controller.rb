@@ -3,9 +3,9 @@ class ChoresController < ApplicationController
         house = House.find_by_id(params[:house_id])
         chore = house.chores.build(chore_params)
         if (chore.save)
-            render json: ChoreSerializer.new(chore)
+            render json: ChoreSerializer.new(chore), status: 200
         else
-            render json: {error: chore.errors.full_messages.join(", ")}
+            render json: {error: chore.errors.full_messages.join(", ")}, status: 400
         end
     end
 

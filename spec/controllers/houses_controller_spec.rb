@@ -12,7 +12,6 @@ RSpec.describe HousesController, type: :controller do
 
             it "renders house json when house is creates" do 
                 json_response = JSON.parse(response.body)
-
                 expect(json_response.keys).to match_array(["data"])
             end
         end
@@ -28,10 +27,8 @@ RSpec.describe HousesController, type: :controller do
 
             it "renders json with errors" do 
                 json_response = JSON.parse(response.body)
-
                 expect(json_response.keys).to match_array(["error"])
             end
-
         end
     end
 
@@ -49,7 +46,6 @@ RSpec.describe HousesController, type: :controller do
             
             it "renders house json when house is found" do 
                 json_response = JSON.parse(response.body)
-
                 expect(json_response.keys).to match_array(["data", "included"])
             end
         end
@@ -66,7 +62,6 @@ RSpec.describe HousesController, type: :controller do
 
             it "renders json with errors" do 
                 json_response = JSON.parse(response.body)
-
                 expect(json_response.keys).to match_array(["error"])
             end
         end
