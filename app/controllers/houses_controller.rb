@@ -4,7 +4,7 @@ class HousesController < ApplicationController
         if house.save   
             render json: HouseSerializer.new(house), status: 200
         else
-            render json: {error: house.errors.full_messages.join(", ")}
+            render json: {error: house.errors.full_messages.join(", ")}, status: 400
         end
     end
     
@@ -13,7 +13,7 @@ class HousesController < ApplicationController
         options = {include: [:house_members, :rules, :chores]}
 
         if house
-            render json: HouseSerializer.new(house, options)
+            render json: HouseSerializer.new(house, options), status: 200
         else
             render json: {error: 'House does not exist'}, status: 404
         end
