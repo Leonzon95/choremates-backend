@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :houses, only: [:create, :update, :destroy, :show] do 
+  resources :houses, only: [:create, :show] do 
     resources :house_members, only: [:create, :update, :destroy]
     resources :rules, only: [:create, :update, :destroy]
     resources :chores, only: [:create, :update, :destroy]
