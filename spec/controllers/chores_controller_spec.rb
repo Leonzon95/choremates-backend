@@ -43,4 +43,24 @@ describe ChoresController, type: :controller do
             end
         end
     end
+
+    describe "#update" do
+        context "updating with valid data" do
+            before do 
+                house = House.new(name: "test")
+                house.save
+                house.chores.create(name: "Clean", difficulty: "Easy")
+            end
+
+            it "updates chore without assinging" do 
+                patch :update, params: {id: 1, house_id: 1,houseMemberId: nil, chore: {name: "Clean Kitchen", difficulty: "Hard" }}
+                json_response = JSON.parse(response.body)
+                new_name = json_response["data"]["attributes"]["name"]
+                new_difficulty = json_response["data"]["attributes"]["difficulty"]
+                
+                expect(new_name).to eq("Clean Kitchen")
+                expect(new_difficulty).to eq("Hard")
+            end
+        end
+    end
 end

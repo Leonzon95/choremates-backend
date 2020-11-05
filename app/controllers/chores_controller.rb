@@ -10,7 +10,6 @@ class ChoresController < ApplicationController
     end
 
     def update
-        # house = House.find_by_id(params[:house_id])
         chore = Chore.find_by_id(params[:id])
         if chore.update(chore_params)
             if params[:houseMemberId]
